@@ -1,0 +1,37 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\captcha\Captcha;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Sample */
+/* @var $form yii\widgets\ActiveForm */
+?>
+
+<div class="sample-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'thought')->textInput(['maxlength' => 255]) ?>
+    <?= $form->field($model, 'email')->textInput()->label(Yii::t('app','Your email address')) ?>
+    <?= $form->field($model, 'url')->textInput()->label(Yii::t('app','Your website')) ?>
+    <?= $form->field($model, 'censorship')->textInput() ?>
+    <?= $form->field($model, 'rank')->textInput() ?>
+
+    <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::classname(), [
+        // additional widget properties
+      ]) ?>
+
+    <?//= $form->field($model, 'goodness')->textInput() ?>
+
+
+    <?//= $form->field($model, 'occurred')->textInput() ?>
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>
