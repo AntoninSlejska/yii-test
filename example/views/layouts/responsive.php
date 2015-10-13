@@ -53,7 +53,7 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
     NavBar::end();
     ?>
 
-    <div class="container">
+    <div class="container-fluid" style="padding-top:60px">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
