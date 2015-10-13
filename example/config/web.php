@@ -38,6 +38,24 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'urlManager' => [
+
+          'enablePrettyUrl' => true,
+          'showScriptName' => false,
+          'rules' => [
+            ['class' => 'app\components\NewsUrlRule',],
+            'news/<year:\d{4}>/items-list' => 'news/items-list',
+            [
+              'pattern' => 'news/<category:\w+>/items-list',
+              'route' => 'news/items-list',
+              'defaults' => ['category' => 'shopping'],
+            ],
+            [
+              'pattern' => '<lang:\w+>/<controller>/<action>',
+              'route' => '<controller>/<action>',
+            ],
+          ],
+        ],
     ],
     'params' => $params,
 ];
