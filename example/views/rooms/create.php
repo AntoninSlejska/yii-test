@@ -24,7 +24,7 @@ if (isset($model->file_image)) {
 echo"<br></div>";
 }
 
-$form = ActiveForm::begin();
+$form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
 echo "<div class='row'>
   <div class='col-lg-12'>
   <h1>Room form</h1>" .

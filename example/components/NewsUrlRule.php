@@ -5,7 +5,7 @@ use yii\web\UrlRuleInterface;
 use yii\base\Object;
 
 /**
- *
+ * Test
  */
 class NewsUrlRule extends Object implements UrlRuleInterface
 {
