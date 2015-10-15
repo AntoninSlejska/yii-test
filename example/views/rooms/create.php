@@ -7,8 +7,16 @@ use yii\helpers\ArrayHelper;
 
 if ($modelSaved) {
   echo "<div class'alert alert-success'>
-  Model ready to be saved!
-  </div>";
+  Model ready to be saved!<br><br>
+  These are the values:<br>
+  Floor: "                        . $model->floor . "<br>" .
+  "Room number: "                 . $model->room_number . "<br>" .
+  "Has conditioner: "             . Yii::$app->formatter->asBoolean($model->has_conditioner) . "<br>" .
+  "Has TV: "                      . Yii::$app->formatter->asBoolean($model->has_tv) . "<br>" .
+  "Has Phone: "                   . Yii::$app->formatter->asBoolean($model->has_phone) . "<br>" .
+  "Available from: " . Yii::$app->formatter->asDate($model->available_from, 'php:j. n. Y') . "<br>" .
+  "Price per day: "               . Yii::$app->formatter->asCurrency($model->price_per_day, 'EUR') . "<br>" .
+  "</div>";
 }
 
 $form = ActiveForm::begin();
