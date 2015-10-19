@@ -53,4 +53,9 @@ class Reservation extends \yii\db\ActiveRecord
             'reservation_date' => 'Reservation Date',
         ];
     }
+
+    public function getRoom()
+    {
+      return $this->hasOne(Reservation::className(), ['id' => 'room_id']);
+    }
 }

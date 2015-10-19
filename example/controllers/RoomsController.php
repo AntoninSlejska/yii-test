@@ -72,4 +72,23 @@ class RoomsController extends Controller
       'modelSaved' => $modelCanSave,
     ]);
   }
+
+  public function actionLastReservationByRoomId($room_id)
+  {
+    $room = Room::findOne($room_id);
+    $lastReservation = $room->lastReservation;
+
+    return $this->render('lastReservationByRoomId', [
+      'room' => $room,
+      'lastReservation' => $lastReservation,
+    ]);
+  }
+  public function actionLastReservationForEveryRoom()
+  {
+    $rooms = Room::find()->with('lastReservation')->all();
+
+    return $this->render('lastReservationForEveryRoom', [
+      'rooms' => $rooms,
+    ]);
+  }
 }
