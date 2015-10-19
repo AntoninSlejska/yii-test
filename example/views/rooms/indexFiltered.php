@@ -4,7 +4,8 @@ $operators = [ '=', '<=', '>=' ];
 $sf = $searchFilter;
 ?>
 
-<form action="<?= Yii::$app->request->csrfParam; ?>" method="post">
+<form action="<?= Url::to(['rooms/index-filtered']) ?>" method="post">
+
   <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
 
   <div class="row">
@@ -39,7 +40,7 @@ $sf = $searchFilter;
     <?php $operator = $sf['price_per_day']['operator']; ?>
     <?php $value = $sf['price_per_day']['value']; ?>
     <div class="col-md-3">
-      <label>Room Number</label>
+      <label>Price per day</label>
       <br>
       <select name="SearchFilter[price_per_day][operator]">
         <?php foreach ($operators as $op) {?>
