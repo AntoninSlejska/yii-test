@@ -72,4 +72,8 @@ class Room extends \yii\db\ActiveRecord
     {
       return $this->hasOne(Reservation::className(), ['room_id' => 'id'])->orderBy(['id' => SORT_DESC,]);
     }
+    public function getCustomers()
+    {
+        return $this->hasMany(Customer::className(), ['id' => 'customer_id'])->via('reservations');
+    }
 }

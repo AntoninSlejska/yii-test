@@ -45,4 +45,13 @@ class Customer extends \yii\db\ActiveRecord
             'phone_number' => 'Phone Number',
         ];
     }
+
+      public function getReservations()
+      {
+          return $this->hasMany(Reservation::className(), ['room_id' => 'id']);
+      }
+      public function getRooms()
+      {
+          return $this->hasMany(Room::className(), ['id' => 'customer_id'])->via('reservations');
+      }
 }

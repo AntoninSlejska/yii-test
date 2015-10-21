@@ -56,6 +56,10 @@ class Reservation extends \yii\db\ActiveRecord
 
     public function getRoom()
     {
-      return $this->hasOne(Reservation::className(), ['id' => 'room_id']);
+      return $this->hasOne(Room::className(), ['id' => 'room_id']);
+    }
+    public function getCustomer()
+    {
+      return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
     }
 }

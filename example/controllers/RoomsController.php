@@ -5,6 +5,8 @@ use Yii;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use app\models\Room;
+use app\models\Reservation;
+use app\models\Customer;
 
 /**
  *
@@ -54,23 +56,36 @@ class RoomsController extends Controller
   public function actionCreate()
   {
     $model = new Room();
-    $modelCanSave = false;
 
-    if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-
-      $model->file_image = UploadedFile::getInstance($model, 'file_image');
-
-      if ($model->file_image) {
-        $model->file_image->saveAs(Yii::getAlias('@uploadedfilesdir/' . $model->file_image->baseName . '.' . $model->file_image->extension));
-      }
-
-      $modelCanSave = true;
+    if ($model->load(Yii::$app->request->post()) && ($model->save())) {
+        return $this->redirect(['detail', 'id' => $model->id]);
     }
 
-    return $this->render('create', [
-      'model' => $model,
-      'modelSaved' => $modelCanSave,
-    ]);
+    // if (isset($POST['Room'])) {
+    //     $model->attributes = $_POST['Room'];
+    //
+    //     if ($model->save()) {
+    //         return $this->redirect(['view', 'id' => $model->id]);
+    //     }
+    // }
+    return $this->render('create', ['model' => $model]);
+  }
+
+  public function actionUpdate($id)
+  {
+    $model = Room::findOne($id);
+
+    if ( ($model != null) && ($model->load(Yii::$app->request->post())) && ($model->save())) {
+        return $this->redirect(['detail', 'id' => $model->id]);
+    }
+
+    return $this->render('update', ['model' => $model]);
+  }
+
+  public function actionDetail($id)
+  {
+    $model = Room::findOne($id);
+    return $this->render('detail', ['model' => $model]);
   }
 
   public function actionLastReservationByRoomId($room_id)
@@ -90,5 +105,41 @@ class RoomsController extends Controller
     return $this->render('lastReservationForEveryRoom', [
       'rooms' => $rooms,
     ]);
+  }
+  public function actionIndexWithRelationships()
+  {
+    $room_id = Yii::$app->request->get('room_id', null);
+    $reservation_id =Yii::$app->request->get('reservation_id', null);
+    $customer_id =Yii::$app->request->get('customer_id', null);
+
+    $roomSelected = null;
+    $reservationSelected = null;
+    $customerSelected = null;
+
+    if ($room_id != null) {
+      $roomSelected = Room::findOne($room_id);
+
+      $rooms = array($roomSelected);
+      $reservations = $roomSelected->reservations;
+      $customers = $roomSelected->customers;
+    } elseif ($reservation_id != null) {
+      $reservationSelected = Reservation::findOne($reservation_id);
+
+      $rooms = array($reservationSelected->room);
+      $reservations = array($reservationSelected);
+      $customers = array($reservationSelected->customer);
+    } elseif ($customer_id != null) {
+      $customerSelected = Customer::findOne($customer_id);
+
+      $rooms = $customerSelected->rooms;
+      $reservations = $customerSelected->reservations;
+      $customers = array($customerSelected);
+    } else {
+      $rooms = Room::find()->all();
+      $reservations = Reservation::find()->all();
+      $customers = Customer::find()->all();
+    }
+
+    return $this->render('indexWithRelationships', ['roomSelected' => $roomSelected, 'reservationSelected' => $reservationSelected, 'customerSelected' => $customerSelected, 'rooms' => $rooms, 'reservations' => $reservations, 'customers' => $customers]);
   }
 }
