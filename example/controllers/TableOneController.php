@@ -51,7 +51,7 @@ class TableOneController extends Controller
         $records = TableOne::find()
             ->innerJoinWith(['tableTwoRecords'])
             ->innerJoinWith(['tableThreeRecords'])
-            //->innerJoinWith(['tableFourRecords'])
+            ->innerJoinWith(['tableFourRecords'])
             ->all();
 
         return $this->render('view', [
