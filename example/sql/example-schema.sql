@@ -1,0 +1,102 @@
+-- MySQL Workbench Synchronization
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`customer` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT '',
+  `surname` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT '',
+  `phone_number` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`migration` (
+  `version` VARCHAR(180) NOT NULL COMMENT '',
+  `apply_time` INT(11) NULL DEFAULT NULL COMMENT '',
+  PRIMARY KEY (`version`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`reservation` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `room_id` INT(11) NOT NULL COMMENT '',
+  `customer_id` INT(11) NOT NULL COMMENT '',
+  `price_per_day` DECIMAL(20,2) NOT NULL COMMENT '',
+  `date_from` DATE NOT NULL COMMENT '',
+  `date_to` DATE NOT NULL COMMENT '',
+  `reservation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '',
+  INDEX `idx_room_id` (`room_id` ASC)  COMMENT '',
+  INDEX `idx_customer_id` (`customer_id` ASC)  COMMENT '',
+  CONSTRAINT `reservation_customer`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `yii2example`.`customer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reservation_room`
+    FOREIGN KEY (`room_id`)
+    REFERENCES `yii2example`.`room` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`room` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `floor` INT(11) NOT NULL COMMENT '',
+  `room_number` INT(11) NOT NULL COMMENT '',
+  `has_conditioner` INT(1) NOT NULL COMMENT '',
+  `has_tv` INT(1) NOT NULL COMMENT '',
+  `has_phone` INT(1) NOT NULL COMMENT '',
+  `available_from` DATE NOT NULL COMMENT '',
+  `price_per_day` DECIMAL(20,2) NULL DEFAULT '0.00' COMMENT '',
+  `description` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`table_1` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`table_2` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `t1_id` INT(11) NOT NULL COMMENT '',
+  `t3_id` INT(11) NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`table_3` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `t4_id` INT(11) NOT NULL COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+CREATE TABLE IF NOT EXISTS `yii2example`.`table_4` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  PRIMARY KEY (`id`)  COMMENT '')
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_general_ci;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
