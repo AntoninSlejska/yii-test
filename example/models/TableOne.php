@@ -48,10 +48,16 @@ class TableOne extends \yii\db\ActiveRecord
     public function getTableThreeRecords()
     {
         return $this->hasMany(TableThree::className(), ['id' => 't3_id'])
-        ->via('tableTwoRecords');
+            ->via('tableTwoRecords');
     }
+    // public function getTableFourRecords()
+    // {
+    //     return $this->hasOne(TableFour::className(), ['id' => 't4_id']);
+    // }
     public function getTableFourRecords()
     {
-        return $this->hasOne(TableFour::className(), ['id' => 't4_id']);
+        return $this->hasMany(TableFour::className(), ['id' => 't4_id'])
+            ->viaTable('table_3', ['id' => 't3_id'])
+            ->viaTable('table_2', ['t1_id' => 'id']);
     }
 }

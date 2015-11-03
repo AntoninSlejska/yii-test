@@ -11,23 +11,23 @@ $roomsFilterData = ArrayHelper::map(Room::find()->all(), 'id', function($model, 
 
 $sumOfPricesPerDay = 0;
 $averagePricePerDay = 0;
-$numberOfRows = count($dataProvider->getModels());
+$numberOfRows = count($reservationsDataProvider->getModels());
 
 if ($numberOfRows > 0) {
-    foreach ($dataProvider->getModels() as $m) $sumOfPricesPerDay += $m->price_per_day;
+    foreach ($reservationsDataProvider->getModels() as $m) $sumOfPricesPerDay += $m->price_per_day;
     $averagePricePerDay = $sumOfPricesPerDay / $numberOfRows;
 }
 
 echo "<h2>Reservations</h2>" .
     GridViewReservation::widget([
         'showFooter' => true,
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'dataProvider' => $reservationsDataProvider,
+        'filterModel' => $reservationsSearchModel,
         'columns' => [
             'id',
             [
                 'header' => 'Room',
-                'filter' => Html::activeDropDownList($searchModel, 'room_id', $roomsFilterData, ['prompt' => '--- all']),
+                'filter' => Html::activeDropDownList($reservationsSearchModel, 'room_id', $roomsFilterData, ['prompt' => '--- all']),
                 'content' => function($model) {
                     return $model->room->floor;
                 },
@@ -59,6 +59,21 @@ echo "<h2>Reservations</h2>" .
                 'template' => '{delete}',
                 'header' => 'Actions',
             ],
+        ],
+    ]);
+
+echo "<h2>Rooms</h2>" .
+    GridViewReservation::widget([
+        'dataProvider' => $roomsDataProvider,
+        'filterModel' => $roomsSearchModel,
+        'columns' => [
+            'id',
+            'floor',
+            'room_number',
+            'has_conditioner:boolean',
+            'has_phone:boolean',
+            'has_tv:boolean',
+            'available_from',
         ],
     ]);
 

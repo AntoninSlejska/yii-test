@@ -39,7 +39,17 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => 'Reservations', 'items' => [
+                ['label' => 'Grid', 'url' => ['/reservations/grid']],
+                ['label' => 'Multiple Grid', 'url' => ['/reservations/multiple-grid']],
+                ]],
+            ['label' => 'Rooms', 'url' => ['/rooms/index'], 'items' => [
+                ['label' => 'list', 'url' => ['/rooms/index']],
+                ['label' => 'filtered', 'url' => ['/rooms/index-filtered']],
+                ['label' => 'with relationships', 'url' => ['/rooms/index-with-relationships']],
+                ['label' => 'last reservation by room ID', 'url' => ['/rooms/last-reservation-by-room-id']],
+                ['label' => 'last reservation for every room', 'url' => ['/rooms/last-reservation-for-every-room']],
+                ]],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :
