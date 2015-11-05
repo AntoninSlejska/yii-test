@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Reservation;
+use app\models\Room;
 
 /**
- * ReservationSearch represents the model behind the search form about `app\models\Reservation`.
+ * RoomSearch represents the model behind the search form about `app\models\Room`.
  */
-class ReservationSearch extends Reservation
+class RoomSearch extends Room
 {
     /**
      * @inheritdoc
@@ -18,9 +18,9 @@ class ReservationSearch extends Reservation
     public function rules()
     {
         return [
-            [['id', 'room_id', 'customer_id'], 'integer'],
+            [['id', 'floor', 'room_number', 'has_conditioner', 'has_tv', 'has_phone'], 'integer'],
+            [['available_from', 'description'], 'safe'],
             [['price_per_day'], 'number'],
-            [['date_from', 'date_to', 'reservation_date'], 'safe'],
         ];
     }
 
@@ -42,7 +42,7 @@ class ReservationSearch extends Reservation
      */
     public function search($params)
     {
-        $query = Reservation::find();
+        $query = Room::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,13 +58,16 @@ class ReservationSearch extends Reservation
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'room_id' => $this->room_id,
-            'customer_id' => $this->customer_id,
+            'floor' => $this->floor,
+            'room_number' => $this->room_number,
+            'has_conditioner' => $this->has_conditioner,
+            'has_tv' => $this->has_tv,
+            'has_phone' => $this->has_phone,
+            'available_from' => $this->available_from,
             'price_per_day' => $this->price_per_day,
-            'date_from' => $this->date_from,
-            'date_to' => $this->date_to,
-            'reservation_date' => $this->reservation_date,
         ]);
+
+        $query->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }
