@@ -51,10 +51,28 @@ foreach ($model->tableTwoRecords as $record) {
     echo '</b><br>';
 }
 
+// foreach ($model->tableTwoRecords as $record) {
+//     $records .= 'Table 2 >> ';
+//     $records .=  'ID: <b>' . $record->id;
+//     $records .=  '</b>, T1 ID: <b>' . $record->t1_id;
+//     $records .=  '</b>, T3 ID: <b>' . $record->t3_id;
+//     $records .=  '</b>; ';
+//     $records .=  'Table 3 >> ';
+//     $records .=  'ID: <b>' . $record->tableThreeRecord->id;
+//     $records .=  '</b>, T4 ID: <b>' . $record->tableThreeRecord->t4_id;
+//     $records .=  '</b>; ';
+//     $records .=  'Table 4 >> ';
+//     $records .=  'ID: <b>' . $record->tableThreeRecord->tableFourRecord->id;
+//     $records .=  '</b><br>';
+// }
+
+// $records = $model->id;
+
 echo '<br><h3>ListView</h3>';
 echo ListView::widget( [
     'dataProvider' => $dataProvider,
     'itemView' => '_view',
+    //'itemView' => $records,
 ]);
 
  ?>

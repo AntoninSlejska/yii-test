@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 28. Okt 2015 um 14:25
+-- Erstellungszeit: 06. Nov 2015 um 13:35
 -- Server-Version: 5.6.26
 -- PHP-Version: 5.6.12
 
@@ -122,14 +122,15 @@ INSERT INTO `room` (`id`, `floor`, `room_number`, `has_conditioner`, `has_tv`, `
 
 CREATE TABLE IF NOT EXISTS `table_1` (
   `id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `table_1`
 --
 
 INSERT INTO `table_1` (`id`) VALUES
-(1);
+(1),
+(2);
 
 -- --------------------------------------------------------
 
@@ -141,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `table_2` (
   `id` int(11) NOT NULL,
   `t1_id` int(11) NOT NULL,
   `t3_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `table_2`
@@ -149,7 +150,9 @@ CREATE TABLE IF NOT EXISTS `table_2` (
 
 INSERT INTO `table_2` (`id`, `t1_id`, `t3_id`) VALUES
 (3, 1, 2),
-(4, 1, 3);
+(4, 1, 3),
+(5, 2, 3),
+(6, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -268,12 +271,12 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT für Tabelle `table_1`
 --
 ALTER TABLE `table_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `table_2`
 --
 ALTER TABLE `table_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT für Tabelle `table_3`
 --
