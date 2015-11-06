@@ -42,6 +42,8 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
             ['label' => 'Reservations', 'items' => [
                 ['label' => 'Grid', 'url' => ['/reservations/grid']],
                 ['label' => 'Multiple Grid', 'url' => ['/reservations/multiple-grid']],
+                ['label' => 'with Gii', 'url' => ['/reservations-with-gii']],
+                ['label' => 'Dependent dropdown', 'url' => ['/reservations/detail-dependent-dropdown']],
                 ]],
             ['label' => 'Rooms', 'url' => ['/rooms/index'], 'items' => [
                 ['label' => 'list', 'url' => ['/rooms/index']],
@@ -49,8 +51,15 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
                 ['label' => 'with relationships', 'url' => ['/rooms/index-with-relationships']],
                 ['label' => 'last reservation by room ID', 'url' => ['/rooms/last-reservation-by-room-id']],
                 ['label' => 'last reservation for every room', 'url' => ['/rooms/last-reservation-for-every-room']],
+                ['label' => 'with Gii', 'url' => ['/rooms-with-gii']],
                 ]],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Customers', 'items' => [
+                ['label' => 'with Gii', 'url' => ['/customers-with-gii']],
+                ]],
+            ['label' => 'Other', 'items' => [
+                ['label' => 'Three Columns', 'url' => ['/three-columns']],
+                ['label' => 'Table one', 'url' => ['/table-one']],
+                ]],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :
                 [
@@ -68,17 +77,18 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
 
-        <div class="well">
-          This is content for blockADV from view
-          <br />
-          <?php if (isset($this->blocks['blockADV'])) {
-            echo $this->blocks['blockADV'];
-          } else {
-            echo "<i>No content available</i>";
-          } ?>
-        </div>
+<?php
+        // echo '<div class="well">
+        //   This is content for blockADV from view
+        //   <br />';
+        //    if (isset($this->blocks['blockADV'])) {
+        //     echo $this->blocks['blockADV'];
+        //   } else {
+        //     echo "<i>No content available</i>";
+        //   }
+        // echo '</div>';
 
-        <?= $content ?>
+        echo $content; ?>
     </div>
 </div>
 

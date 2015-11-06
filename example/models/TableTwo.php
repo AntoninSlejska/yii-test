@@ -58,8 +58,8 @@ class TableTwo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getT3()
+    public function getTableThreeRecord()
     {
-        return $this->hasOne(Table3::className(), ['id' => 't3_id']);
+        return $this->hasOne(TableThree::className(), ['id' => 't3_id']);
     }
 }

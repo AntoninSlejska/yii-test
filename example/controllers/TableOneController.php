@@ -48,15 +48,9 @@ class TableOneController extends Controller
      */
     public function actionView($id)
     {
-        $records = TableOne::find()
-            ->innerJoinWith(['tableTwoRecords'])
-            ->innerJoinWith(['tableThreeRecords'])
-            ->innerJoinWith(['tableFourRecords'])
-            ->all();
-
+        $model = TableOne::find($id)->one();
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'records' => $records,
+             'model' => $model,
         ]);
     }
 

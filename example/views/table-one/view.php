@@ -35,12 +35,27 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <?php
 
-print_r($records);
-
-foreach ($records as $record) {
-
-print_r($record);
-
+foreach ($model->tableTwoRecords as $record) {
+    echo 'Table 2 >> ';
+    echo 'ID: <b>' . $record->id;
+    echo '</b>, T1 ID: <b>' . $record->t1_id;
+    echo '</b>, T3 ID: <b>' . $record->t3_id;
+    echo '</b>; ';
+    echo 'Table 3 >> ';
+    echo 'ID: <b>' . $record->tableThreeRecord->id;
+    echo '</b>, T4 ID: <b>' . $record->tableThreeRecord->t4_id;
+    echo '</b>; ';
+    echo 'Table 4 >> ';
+    echo 'ID: <b>' . $record->tableThreeRecord->tableFourRecord->id;
+    echo '</b>;<br>';
 }
+
+// print_r($records);
+//
+// foreach ($records as $record) {
+//
+// print_r($record);
+//
+// }
 
  ?>

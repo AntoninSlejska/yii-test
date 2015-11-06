@@ -48,16 +48,12 @@ class TableThree extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTable2s()
+    // public function getTableFourRecords()
+    // {
+    //     return $this->hasMany(TableFour::className(), ['id' => 't4_id']);
+    // }
+    public function getTableFourRecord()
     {
-        return $this->hasMany(Table2::className(), ['t3_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getT4()
-    {
-        return $this->hasOne(Table4::className(), ['id' => 't4_id']);
+        return $this->hasOne(TableFour::className(), ['id' => 't4_id']);
     }
 }

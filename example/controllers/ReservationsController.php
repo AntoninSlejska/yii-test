@@ -10,6 +10,41 @@ use yii\data\ActiveDataProvider;
 
 class ReservationsController extends Controller
 {
+    public function actionDetailDependentDropdown()
+    {
+        $showDetail = false;
+
+        $model = new Reservation();
+
+        if(isset($_POST['Reservation']))
+        {
+            $model->load(Yii::$app->request->post());
+
+            if(isset($_POST['Reservation']['id']) && ($_POST['Reservation']['id'] != null))
+            {
+                $model = Reservation::findOne($_POST['Reservation']['id']);
+                $showDetail = true;
+            }
+        }
+
+        return $this->render('detailDependentDropdown', ['model' => $model, 'showDetail' => $showDetail]);
+    }
+
+    public function actionAjaxDropDownListByCustomerId($customer_id)
+    {
+        $output = '';
+
+        $items = Reservation::findAll(['customer_id' => $customer_id]);
+
+        foreach($items as $item)
+        {
+            $content = sprintf('reservation #%s at %s', $item->id, date('Y-m-d H:i:s', strtotime($item->reservation_date)));
+            $output .= \yii\helpers\Html::tag('option', $content, ['value' => $item->id]);
+        }
+
+        return $output;
+    }
+    
     public function actionGrid()
     {
         $query = Reservation::find();
