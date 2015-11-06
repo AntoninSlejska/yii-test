@@ -44,7 +44,7 @@ class ReservationsController extends Controller
 
         return $output;
     }
-    
+
     public function actionGrid()
     {
         $query = Reservation::find();

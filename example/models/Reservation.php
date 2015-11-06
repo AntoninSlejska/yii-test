@@ -56,10 +56,14 @@ class Reservation extends \yii\db\ActiveRecord
 
     public function getRoom()
     {
-      return $this->hasOne(Room::className(), ['id' => 'room_id']);
+        return $this->hasOne(Room::className(), ['id' => 'room_id']);
     }
     public function getCustomer()
     {
-      return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
+        return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
+    }
+    public function getDescription()
+    {
+        return sprintf('reservation n.%s at %s', $this->id, date('Y-m-d H:i:s', strtotime($this->reservation_date)));
     }
 }

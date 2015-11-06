@@ -8,6 +8,8 @@ use app\models\TableOneSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+
 
 /**
  * TableOneController implements the CRUD actions for TableOne model.
@@ -48,9 +50,18 @@ class TableOneController extends Controller
      */
     public function actionView($id)
     {
-        $model = TableOne::find($id)->one();
+        $query = TableOne::find();
+        
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+
         return $this->render('view', [
-             'model' => $model,
+             'model' => $this->findModel($id),
+             'dataProvider' => $dataProvider,
         ]);
     }
 

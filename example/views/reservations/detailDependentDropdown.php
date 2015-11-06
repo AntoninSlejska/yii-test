@@ -9,7 +9,7 @@ use app\models\Reservation;
 $urlReservationsByCustomer = Url::to(['reservations/ajax-drop-down-list-by-customer-id']);
 
 $this->registerJs( <<< EOT_JS
-    $(document).on('change', '#reservation-customer_id', function(ev) {
+    $(document).on('change', '#reservation-customer_id', function(event) {
         $('#detail').hide();
 
         var customerId = $(this).val();
@@ -22,12 +22,12 @@ $this->registerJs( <<< EOT_JS
             $('#reservation-id').html(data);
         }
         )
-        ev.preventDefault();
+        event.preventDefault();
     });
 
-    $(document).on('change', '#reservation-id', function(ev) {
+    $(document).on('change', '#reservation-id', function(event) {
         $(this).parents('form').submit();
-        ev.preventDefault();
+        event.preventDefault();
     });
 EOT_JS
 );
@@ -41,10 +41,12 @@ echo $form->field($model, 'customer_id')->dropDownList(ArrayHelper::map( $custom
 
 $reservations = Reservation::findAll(['customer_id' => $model->customer_id]);
 
-echo $form->field($model, 'id')->label('Reservation ID')->dropDownList(ArrayHelper::map( $reservations, 'id', function($temp, $defaultValue) {
-        $content = sprintf('reservation #%s at %s', $temp->id, date('Y-m-d H:i:s', strtotime($temp->reservation_date)));
-        return $content;
-}), [ 'prompt' => '--- choose' ]);
+// echo $form->field($model, 'id')->label('Reservation ID')->dropDownList(ArrayHelper::map( $reservations, 'id', function($temp, $defaultValue) {
+//         $content = sprintf('reservation #%s at %s', $temp->id, date('Y-m-d H:i:s', strtotime($temp->reservation_date)));
+//         return $content;
+// }), [ 'prompt' => '--- choose' ]);
+
+echo $form->field($model, 'id')->label('Reservation ID')->dropDownList(ArrayHelper::map($reservations, 'id', 'description'), [ 'prompt' => '--- choose' ]);
 
 echo '<div id="detail">';
 

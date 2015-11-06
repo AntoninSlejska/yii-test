@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TableOne */
@@ -47,15 +48,13 @@ foreach ($model->tableTwoRecords as $record) {
     echo '</b>; ';
     echo 'Table 4 >> ';
     echo 'ID: <b>' . $record->tableThreeRecord->tableFourRecord->id;
-    echo '</b>;<br>';
+    echo '</b><br>';
 }
 
-// print_r($records);
-//
-// foreach ($records as $record) {
-//
-// print_r($record);
-//
-// }
+echo '<br><h3>ListView</h3>';
+echo ListView::widget( [
+    'dataProvider' => $dataProvider,
+    'itemView' => '_view',
+]);
 
  ?>
