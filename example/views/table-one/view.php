@@ -96,10 +96,25 @@ echo GridView::widget([
             'template' => '{update} {delete}',
             'buttons' => [
                 'update' => function ($url, $model, $key) {
-                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['table-two/update', 'id' => $key ]));
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>',
+                        Url::to(['table-two/update', 'id' => $key ]),
+                        [
+                            'title' => 'Update',
+                            'aria-label' => 'Update',
+                        ]
+                    );
                },
                 'delete' => function ($url, $model, $key) {
-                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['table-two/delete', 'id' => $key ]));
+                    return Html::a('<span class="glyphicon glyphicon-trash"></span>',
+                        Url::to(['table-two/delete', 'id' => $key ]),
+                        [
+                            'title' => 'Delete',
+                            'aria-label' => 'Delete',
+                            'data-confirm' => 'Are you sure you want to delete this item?',
+                            'data-method' => 'post',
+                            'data-pjax' => '0',
+                        ]
+                    );
                 },
             ],
         ],
