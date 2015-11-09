@@ -37,6 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <?php
 
+echo '<br><h3>Simple view</h3><p>See: <a href="http://www.yiiframework.com/forum/index.php/topic/68387-what-is-the-correct-way-to-define-relationships-among-multiple-tables/page__view__findpost__p__291217">Yii Forum</a></p>';
+
 foreach ($model->tableTwoRecords as $record) {
     echo 'Table 2 >> ';
     echo 'ID: <b>' . $record->id;
@@ -76,7 +78,7 @@ foreach ($model->tableTwoRecords as $record) {
 //     //'itemView' => $records,
 // ]);
 
-echo '<br><h3>GridView</h3>';
+echo '<br><h3>GridView</h3><p>See: <a href="http://www.yiiframework.com/forum/index.php/topic/68387-what-is-the-correct-way-to-define-relationships-among-multiple-tables/page__view__findpost__p__291387">Yii Forum</a></p>';
 echo GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [

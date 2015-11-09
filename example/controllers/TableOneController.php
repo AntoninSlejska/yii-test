@@ -55,7 +55,7 @@ class TableOneController extends Controller
         //$query = TableOne::find($id);
 
         $searchModel = new TableTwoSearch([
-            't1_id' => $id,
+            't1_id' => $id, // the data have to be filtered by the id of the displayed record
         ]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
