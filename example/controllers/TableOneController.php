@@ -45,21 +45,28 @@ class TableOneController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single TableOne model.
-     * @param integer $id
-     * @return mixed
-     */
+    public function loadModel($id) {
+        $model = TableTwo::find($id);
+        if ($model === null)
+            throw new CHttpException(404, 'Model not found.');
+        return $model;
+    }
+
     public function actionView($id)
     {
-        //$query = TableOne::find($id);
+        // For the simple view
+        $model = $this->findModel($id);
 
+        // For the GridView
         $searchModel = new TableTwoSearch([
             't1_id' => $id, // the data have to be filtered by the id of the displayed record
         ]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        // $dataProvider = new ActiveDataProvider([
+        // For the ListView
+        // $modelForListView = $this->loadModel($id);
+        // $query = TableTwo::find(['t1_id' => $id]);
+        // $dataProviderForListView = new ActiveDataProvider([
         //     'query' => $query,
         //     'pagination' => [
         //         'pageSize' => 10,
@@ -67,9 +74,11 @@ class TableOneController extends Controller
         // ]);
 
         return $this->render('view', [
-             'model' => $this->findModel($id),
+             'model' => $model,
              'searchModel' => $searchModel,
              'dataProvider' => $dataProvider,
+            //  'modelForListView' => $modelForListView,
+            //  'dataProviderForListView' => $dataProviderForListView,
         ]);
     }
 

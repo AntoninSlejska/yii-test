@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use yii\widgets\ListView;
 use yii\grid\GridView;
@@ -82,15 +83,37 @@ echo '<br><h3>GridView</h3><p>See: <a href="http://www.yiiframework.com/forum/in
 echo GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
-         'id',
-         't1_id',
-         'tableOneRecord.id',
-         't3_id',
-         'tableThreeRecord.id',
-         'tableThreeRecord.t4_id',
-         'tableFourRecord.id',
+        ['class' => 'yii\grid\SerialColumn'],
+        'id',
+        't1_id',
+        'tableOneRecord.id',
+        't3_id',
+        'tableThreeRecord.id',
+        'tableThreeRecord.t4_id',
+        'tableFourRecord.id',
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'template' => '{update} {delete}',
+            'buttons' => [
+                'update' => function ($url, $model, $key) {
+                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', Url::to(['table-two/update', 'id' => $key ]));
+               },
+                'delete' => function ($url, $model, $key) {
+                    return Html::a('<span class="glyphicon glyphicon-trash"></span>', Url::to(['table-two/delete', 'id' => $key ]));
+                },
+            ],
+        ],
     ],
 ]);
+
+
+// echo '<br><h3>ListView</h3><p>See: <a href="http://www.yiiframework.com/forum/index.php/topic/68387-what-is-the-correct-way-to-define-relationships-among-multiple-tables/">Yii Forum</a></p>';
+// echo $modelForListView->id;
+    // for TableTwo
+// echo ListView::widget( [
+//     'dataProvider' => $dataProviderForListView,
+//     'itemView' => '_view',
+// ]);
 
 
 ?>

@@ -1,4 +1,4 @@
 <?php
 use yii\helpers\Html;
-echo $model->id;
+echo $modelForListView->tableOneRecord->id;
 ?>
