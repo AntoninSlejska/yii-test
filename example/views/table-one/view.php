@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\ListView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TableOne */
@@ -68,11 +69,26 @@ foreach ($model->tableTwoRecords as $record) {
 
 // $records = $model->id;
 
-echo '<br><h3>ListView</h3>';
-echo ListView::widget( [
+// echo '<br><h3>ListView</h3>';
+// echo ListView::widget( [
+//     'dataProvider' => $dataProvider,
+//     'itemView' => '_view',
+//     //'itemView' => $records,
+// ]);
+
+echo '<br><h3>GridView</h3>';
+echo GridView::widget([
     'dataProvider' => $dataProvider,
-    'itemView' => '_view',
-    //'itemView' => $records,
+    'columns' => [
+         'id',
+         't1_id',
+         'tableOneRecord.id',
+         't3_id',
+         'tableThreeRecord.id',
+         'tableThreeRecord.t4_id',
+         'tableFourRecord.id',
+    ],
 ]);
 
- ?>
+
+?>

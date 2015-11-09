@@ -3,20 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\TableOne;
-use app\models\TableOneSearch;
 use app\models\TableTwo;
 use app\models\TableTwoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
-
 
 /**
- * TableOneController implements the CRUD actions for TableOne model.
+ * TableTwoController implements the CRUD actions for TableTwo model.
  */
-class TableOneController extends Controller
+class TableTwoController extends Controller
 {
     public function behaviors()
     {
@@ -31,12 +27,12 @@ class TableOneController extends Controller
     }
 
     /**
-     * Lists all TableOne models.
+     * Lists all TableTwo models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TableOneSearch();
+        $searchModel = new TableTwoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,41 +42,25 @@ class TableOneController extends Controller
     }
 
     /**
-     * Displays a single TableOne model.
+     * Displays a single TableTwo model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        //$query = TableOne::find($id);
-
-        $searchModel = new TableTwoSearch([
-            't1_id' => $id,
-        ]);
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        // $dataProvider = new ActiveDataProvider([
-        //     'query' => $query,
-        //     'pagination' => [
-        //         'pageSize' => 10,
-        //     ],
-        // ]);
-
         return $this->render('view', [
-             'model' => $this->findModel($id),
-             'searchModel' => $searchModel,
-             'dataProvider' => $dataProvider,
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new TableOne model.
+     * Creates a new TableTwo model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TableOne();
+        $model = new TableTwo();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,7 +72,7 @@ class TableOneController extends Controller
     }
 
     /**
-     * Updates an existing TableOne model.
+     * Updates an existing TableTwo model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -111,7 +91,7 @@ class TableOneController extends Controller
     }
 
     /**
-     * Deletes an existing TableOne model.
+     * Deletes an existing TableTwo model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -124,15 +104,15 @@ class TableOneController extends Controller
     }
 
     /**
-     * Finds the TableOne model based on its primary key value.
+     * Finds the TableTwo model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return TableOne the loaded model
+     * @return TableTwo the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TableOne::findOne($id)) !== null) {
+        if (($model = TableTwo::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

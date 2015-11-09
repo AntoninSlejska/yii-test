@@ -47,19 +47,17 @@ class TableTwo extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getT1()
+    public function getTableOneRecord()
     {
-        return $this->hasOne(Table1::className(), ['id' => 't1_id']);
+        return $this->hasOne(TableOne::className(), ['id' => 't1_id']);
     }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getTableThreeRecord()
     {
         return $this->hasOne(TableThree::className(), ['id' => 't3_id']);
+    }
+    public function getTableFourRecord()
+    {
+        return $this->hasOne(TableFour::className(), ['id' => 't4_id'])
+            ->via('tableThreeRecord');
     }
 }

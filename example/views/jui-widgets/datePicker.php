@@ -29,6 +29,14 @@ if ($reservationUpdated) {
 
 $form = ActiveForm::begin();
 
+echo "<h3>Date picker from model<br>(using dd/MM/yyyy formate and italian language)</h3>
+    <br><label>Date from</label>";
 
+echo DatePicker::widget([
+    'model' => $reservation,
+    'attribute' => 'date_from',
+    'language' => 'it',
+    'dateFormat' => 'dd/MM/yyyy',
+    ]);
 
 ?>

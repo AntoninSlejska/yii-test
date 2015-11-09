@@ -1,4 +1,4 @@
 <?php
 use yii\helpers\Html;
-echo $model->tableTwoRecords->id;
+echo $model->id;
 ?>
