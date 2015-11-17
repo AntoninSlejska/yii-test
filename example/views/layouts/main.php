@@ -59,6 +59,7 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
             ['label' => 'Other', 'items' => [
                 ['label' => 'Three Columns', 'url' => ['/three-columns']],
                 ['label' => 'Table one', 'url' => ['/table-one']],
+                ['label' => 'Date Picker', 'url' => ['/jui-widgets/date-picker']],
                 ]],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :

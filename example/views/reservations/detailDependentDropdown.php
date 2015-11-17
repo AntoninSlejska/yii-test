@@ -34,7 +34,7 @@ EOT_JS
 
 echo '<div class="customer-form">';
 
-$form = ActiveForm::begin( ['enableAjaxValidation' => false, 'enableClientValidation' => false, 'options' => ['data-ajax' => '']]);
+$form = ActiveForm::begin( ['enableAjaxValidation' => false, 'enableClientValidation' => false, 'options' => ['data-pjax' => '']]);
 
 $customers = Customer::find()->all();
 echo $form->field($model, 'customer_id')->dropDownList(ArrayHelper::map( $customers, 'id', 'nameAndSurname'), [ 'prompt' => '--- choose' ]);
