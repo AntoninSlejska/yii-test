@@ -55,6 +55,7 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
                 ]],
             ['label' => 'Customers', 'items' => [
                 ['label' => 'with Gii', 'url' => ['/customers-with-gii']],
+                ['label' => 'multiple models', 'url' => ['/customers/create-multiple-models']],
                 ]],
             ['label' => 'Other', 'items' => [
                 ['label' => 'Three Columns', 'url' => ['/three-columns']],
