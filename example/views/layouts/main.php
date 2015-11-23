@@ -44,6 +44,7 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
                 ['label' => 'Multiple Grid', 'url' => ['/reservations/multiple-grid']],
                 ['label' => 'with Gii', 'url' => ['/reservations-with-gii']],
                 ['label' => 'Dependent dropdown', 'url' => ['/reservations/detail-dependent-dropdown']],
+                ['label' => 'Create Customer and Reservation', 'url' => ['/reservations/create-customer-and-reservation']],
                 ]],
             ['label' => 'Rooms', 'url' => ['/rooms/index'], 'items' => [
                 ['label' => 'list', 'url' => ['/rooms/index']],

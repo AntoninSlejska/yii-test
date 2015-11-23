@@ -6,6 +6,7 @@ use yii\web\Controller;
 use app\models\Reservation;
 use app\models\ReservationSearch;
 use app\models\Room;
+use app\models\Customer;
 use yii\data\ActiveDataProvider;
 
 class ReservationsController extends Controller
@@ -184,5 +185,42 @@ class ReservationsController extends Controller
             'resultQueryAveragePricePerDay' => $resultQueryAveragePricePerDay,
             ]);
 
+    }
+    
+    public function actionCreateCustomerAndReservation()
+    {
+        $customer = new Customer();
+        $reservation = new Reservation();
+        
+        $reservation->customer_id = 0;
+        
+        if (
+            $customer->load(Yii::$app->request->post()) &&
+            $reservation->load(Yii::$app->request->post()) &&
+            $customer->validate() &&
+            $reservation->validate()
+        ) {
+            $dbTrans = Yii::$app->db->beginTransaction();
+            
+            $customerSaved = $customer->save();
+            
+            if ($customerSaved) {
+                $reservation->customer_id = $customer->id;
+                $reservationSaved = $reservation->save();
+                
+                if ($reservationSaved) {
+                    $dbTrans->commit();
+                } else {
+                    $dbTrans->rollback();
+                }
+            } else {
+                $dbTrans->rollback();
+            }
+        }
+    
+    return $this->render('createCustomerAndReservation', [
+        'customer' => $customer,
+        'reservation' => $reservation
+        ]);
     }
 }
