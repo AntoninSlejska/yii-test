@@ -11,7 +11,7 @@ $form = ActiveForm::begin();
 
 echo "<div class'model'>" .
     $form->errorSummary([$customer, $reservation]) .
-    "<h2>Custommer</h2>" .
+    "<h2>Customer</h2>" .
     $form->field($customer, "name")->textInput() .
     $form->field($customer, "surname")->textInput() .
     $form->field($customer, "phone_number")->textInput() .
