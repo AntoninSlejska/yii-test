@@ -36,7 +36,13 @@ AppAsset::register($this);
     $navItems = [
         ['label' => Yii::t('app', 'Home'), 'url' => ['/site/index']],
         ['label' => Yii::t('app', 'Status'), 'url' => ['/status/index']],
-        ['label' => Yii::t('app', 'About'), 'url' => ['/site/about']],
+        ['label' => Yii::t('app', 'Gii'), 'items' => [
+            ['label' => Yii::t('app', 'Simple Gii'), 'url' => ['/simple-gii']],
+            ['label' => Yii::t('app', 'Enhanced Gii'), 'url' => ['/enhanced-gii']],
+            ['label' => Yii::t('app', 'AJAX CRUD'), 'url' => ['/ajax-crud']],
+            ['label' => Yii::t('app', 'Kartik CRUD'), 'url' => ['/kartik-crud']],
+            ['label' => Yii::t('app', 'Giiant'), 'url' => ['/sample']],
+            ]],
         ['label' => Yii::t('app', 'Contact'), 'url' => ['/site/contact']],
       ];
     if (Yii::$app->user->isGuest) {

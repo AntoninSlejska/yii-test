@@ -19,7 +19,11 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "dektrium/yii2-user": "0.9.*@dev",
-        "yiidoc/yii2-redactor": "^2.0"
+        "yiidoc/yii2-redactor": "^2.0",
+        "mootensai/yii2-enhanced-gii": "dev-master",
+        "johnitvn/yii2-ajaxcrud": "*",
+        "warrence/yii2-kartikgii": "dev-master",
+        "schmunk42/yii2-giiant": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

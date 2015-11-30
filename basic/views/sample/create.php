@@ -2,20 +2,33 @@
 
 use yii\helpers\Html;
 
+/**
+* @var yii\web\View $this
+* @var app\models\Sample $model
+*/
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Sample */
-
-$this->title = Yii::t('app', 'Create Sample');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Samples'), 'url' => ['index']];
+$this->title = 'Create';
+$this->params['breadcrumbs'][] = ['label' => 'Samples', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sample-create">
+<div class="giiant-crud sample-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>
+        <?= 'Sample' ?>        <small>
+                        <?= $model->id ?>        </small>
+    </h1>
+
+    <div class="clearfix crud-navigation">
+        <div class="pull-left">
+            <?=             Html::a(
+            'Cancel',
+            \yii\helpers\Url::previous(),
+            ['class' => 'btn btn-default']) ?>
+        </div>
+    </div>
 
     <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    'model' => $model,
+    ]); ?>
 
 </div>

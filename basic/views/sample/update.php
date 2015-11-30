@@ -2,22 +2,29 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Sample */
+/**
+ * @var yii\web\View $this
+ * @var app\models\Sample $model
+ */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
-    'modelClass' => 'Sample',
-]) . ' ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Samples'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->title = 'Sample ' . $model->id . ', ' . 'Edit';
+$this->params['breadcrumbs'][] = ['label' => 'Samples', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => (string)$model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = 'Edit';
 ?>
-<div class="sample-update">
+<div class="giiant-crud sample-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>
+        <?= 'Sample' ?>        <small>
+                        <?= $model->id ?>        </small>
+    </h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="crud-navigation">
+        <?= Html::a('<span class="glyphicon glyphicon-eye-open"></span> ' . 'View', ['view', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+    </div>
+
+	<?php echo $this->render('_form', [
+		'model' => $model,
+	]); ?>
 
 </div>

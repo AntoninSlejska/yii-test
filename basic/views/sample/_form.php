@@ -1,37 +1,75 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\captcha\Captcha;
+use yii\bootstrap\ActiveForm;
+use \dmstr\bootstrap\Tabs;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Sample */
-/* @var $form yii\widgets\ActiveForm */
+/**
+* @var yii\web\View $this
+* @var app\models\Sample $model
+* @var yii\widgets\ActiveForm $form
+*/
+
 ?>
 
 <div class="sample-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+    'id' => 'Sample',
+    'layout' => 'horizontal',
+    'enableClientValidation' => true,
+    'errorSummaryCssClass' => 'error-summary alert alert-error'
+    ]
+    );
+    ?>
 
-    <?= $form->field($model, 'thought')->textInput(['maxlength' => 255]) ?>
-    <?= $form->field($model, 'email')->textInput()->label(Yii::t('app','Your email address')) ?>
-    <?= $form->field($model, 'url')->textInput()->label(Yii::t('app','Your website')) ?>
-    <?= $form->field($model, 'censorship')->textInput() ?>
-    <?= $form->field($model, 'rank')->textInput() ?>
+    <div class="">
+        <?php $this->beginBlock('main'); ?>
 
-    <?= $form->field($model, 'captcha')->widget(\yii\captcha\Captcha::classname(), [
-        // additional widget properties
-      ]) ?>
+        <p>
+            
+			<?= $form->field($model, 'id')->textInput() ?>
+			<?= $form->field($model, 'thought')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'goodness')->textInput() ?>
+			<?= $form->field($model, 'rank')->textInput() ?>
+			<?= $form->field($model, 'censorship')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'occurred')->textInput() ?>
+			<?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'filename')->textInput(['maxlength' => true]) ?>
+			<?= $form->field($model, 'avatar')->textInput(['maxlength' => true]) ?>
+        </p>
+        <?php $this->endBlock(); ?>
+        
+        <?=
+    Tabs::widget(
+                 [
+                   'encodeLabels' => false,
+                     'items' => [ [
+    'label'   => 'Sample',
+    'content' => $this->blocks['main'],
+    'active'  => true,
+], ]
+                 ]
+    );
+    ?>
+        <hr/>
 
-    <?//= $form->field($model, 'goodness')->textInput() ?>
+        <?php echo $form->errorSummary($model); ?>
 
+        <?= Html::submitButton(
+        '<span class="glyphicon glyphicon-check"></span> ' .
+        ($model->isNewRecord ? 'Create' : 'Save'),
+        [
+        'id' => 'save-' . $model->formName(),
+        'class' => 'btn btn-success'
+        ]
+        );
+        ?>
 
-    <?//= $form->field($model, 'occurred')->textInput() ?>
+        <?php ActiveForm::end(); ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
-
 </div>
+
