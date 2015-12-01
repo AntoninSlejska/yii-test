@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "853d5f0d3d012382ab6f1ff8434b45b1",
+    "hash": "749e57e2c5847efc9fe51ad1749060b9",
+    "content-hash": "fc0c2e6d0012e8ccb4f350508eeb1664",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -337,6 +338,54 @@
             "time": "2015-03-06 05:28:07"
         },
         {
+            "name": "cornernote/yii2-linkall",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cornernote/yii2-linkall.git",
+                "reference": "19a44c911f9ddc303476964aa442b263056bf8a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cornernote/yii2-linkall/zipball/19a44c911f9ddc303476964aa442b263056bf8a0",
+                "reference": "19a44c911f9ddc303476964aa442b263056bf8a0",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "phpunit/dbunit": "~1.0",
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "cornernote\\linkall\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Brett O'Donnell",
+                    "email": "cornernote@gmail.com",
+                    "homepage": "http://mrphp.com.au/"
+                }
+            ],
+            "description": "Behavior to handle saving multiple many to many related records in Yii2.",
+            "keywords": [
+                "link",
+                "linkall",
+                "many to many",
+                "yii2"
+            ],
+            "time": "2015-06-20 08:36:12"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.6.0",
             "source": {
@@ -432,6 +481,55 @@
                 "mailer"
             ],
             "time": "2015-06-06 14:19:39"
+        },
+        {
+            "name": "voskobovich/yii2-many-many-behavior",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voskobovich/ManyToManyBehavior.git",
+                "reference": "12568f1eacd95d1b4cff2e9fe1baa0bb94cff68f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voskobovich/ManyToManyBehavior/zipball/12568f1eacd95d1b4cff2e9fe1baa0bb94cff68f",
+                "reference": "12568f1eacd95d1b4cff2e9fe1baa0bb94cff68f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "yiisoft/yii2-codeception": "~2.0"
+            },
+            "type": "yii2-behavior",
+            "autoload": {
+                "psr-4": {
+                    "voskobovich\\behaviors\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaly Voskobovich",
+                    "email": "vitaly@voskobovich.com",
+                    "homepage": "http://voskobovich.com"
+                }
+            ],
+            "description": "This behavior makes it easy to maintain relations many-to-many in the your ActiveRecord model.",
+            "homepage": "https://github.com/voskobovich/ManyToManyBehavior",
+            "keywords": [
+                "Active Record",
+                "Behavior",
+                "many-to-many",
+                "relation",
+                "yii2"
+            ],
+            "time": "2015-10-23 17:22:33"
         },
         {
             "name": "yiisoft/yii2",

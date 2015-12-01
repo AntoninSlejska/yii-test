@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "table_3".
@@ -13,19 +14,13 @@ use Yii;
  * @property Table2[] $table2s
  * @property Table4 $t4
  */
-class TableThree extends \yii\db\ActiveRecord
+class TableThree extends ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
     public static function tableName()
     {
         return 'table_3';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
@@ -34,9 +29,6 @@ class TableThree extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [

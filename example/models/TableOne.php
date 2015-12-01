@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use cornernote\linkall\LinkAllBehavior;
+use voskobovich\behaviors\ManyToManyBehavior;
 
 /**
  * This is the model class for table "table_1".
@@ -11,29 +14,36 @@ use Yii;
  *
  * @property Table2[] $table2s
  */
-class TableOne extends \yii\db\ActiveRecord
+class TableOne extends ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => LinkAllBehavior::className(),
+            ],
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'three_list' => 'tableThreeRecords',
+                ],
+            ],
+        ];
+
+    }
+
     public static function tableName()
     {
         return 'table_1';
     }
 
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [
-
+            [['three_list'], 'safe']
         ];
     }
 
-    /**
-     * @inheritdoc
-     */
     public function attributeLabels()
     {
         return [
@@ -45,15 +55,12 @@ class TableOne extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TableTwo::className(), ['t1_id' => 'id']);
     }
-    // public function getTableThreeRecords()
-    // {
-    //     return $this->hasMany(TableThree::className(), ['id' => 't3_id'])
-    //         ->via('tableTwoRecords');
-    //         //->viaTable('table_2', ['t1_id' => 'id']);
-    // }
-    // public function getTableFourRecords()
-    // {
-    //     return $this->hasMany(TableFour::className(), ['id' => 'table_3.t4_id']);
-    // }
+
+    public function getTableThreeRecords()
+    {
+        return $this->hasMany(TableThree::className(), ['id' => 't3_id'])
+            ->via('tableTwoRecords');
+            //->viaTable('table_2', ['t1_id' => 'id']);
+    }
 
 }

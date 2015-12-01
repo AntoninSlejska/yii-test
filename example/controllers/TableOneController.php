@@ -7,6 +7,7 @@ use app\models\TableOne;
 use app\models\TableOneSearch;
 use app\models\TableTwo;
 use app\models\TableTwoSearch;
+use app\models\TableThree;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -146,5 +147,22 @@ class TableOneController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionExample()
+    {
+        $tableOneRecords = TableOne::findOne(1);
+        $tableThreeRecords = [tableThree::findOne(2), tableThree::findOne(3)];
+
+        $extraColumns = []; // extra columns to be saved to the many to many table
+        $unlink = true; // unlink tags not in the list
+        $delete = true; // delete unlinked tags
+
+        $tableOneRecords->linkAll('tableThreeRecords', $tableThreeRecords, $extraColumns, $unlink, $delete);
+
+        $tableOneRecords->save();
+
+        // var_dump($tableOneRecords);
+        // exit;
     }
 }
