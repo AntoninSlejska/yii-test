@@ -1,9 +1,10 @@
 <?php
-
 namespace app\models;
 
 use Yii;
 use yii\db\ActiveRecord;
+use voskobovich\behaviors\ManyToManyBehavior;
+
 
 /**
  * This is the model class for table "table_3".
@@ -16,6 +17,19 @@ use yii\db\ActiveRecord;
  */
 class TableThree extends ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => ManyToManyBehavior::className(),
+                'relations' => [
+                    'five_list' => 'tableFiveRecords',
+                ],
+            ],
+        ];
+
+    }
+
     public static function tableName()
     {
         return 'table_3';
@@ -25,7 +39,8 @@ class TableThree extends ActiveRecord
     {
         return [
             [['t4_id'], 'required'],
-            [['t4_id'], 'integer']
+            [['t4_id'], 'integer'],
+            [['five_list'], 'safe'],
         ];
     }
 
@@ -47,5 +62,10 @@ class TableThree extends ActiveRecord
     public function getTableFourRecord()
     {
         return $this->hasOne(TableFour::className(), ['id' => 't4_id']);
+    }
+
+    public function getTableFiveRecords()
+    {
+        return $this->hasMany(TableFive::className(), ['t3_id' => 'id']);
     }
 }
