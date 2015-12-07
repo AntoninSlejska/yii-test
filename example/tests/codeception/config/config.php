@@ -4,6 +4,7 @@
  */
 return [
     'language' => 'en-US',
+    //'test_entry_url' => 'http://localhost',
     'controllerMap' => [
         'fixture' => [
             'class' => 'yii\faker\FixtureController',
@@ -14,7 +15,7 @@ return [
     ],
     'components' => [
         'db' => [
-            'dsn' => 'mysql:host=localhost;dbname=yii2_basic_tests',
+            'dsn' => 'mysql:host=localhost;dbname=yii2example_tests',
         ],
         'mailer' => [
             'useFileTransport' => true,
