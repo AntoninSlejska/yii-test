@@ -48,7 +48,7 @@ class LoginFormTest extends TestCase
     {
         $model = new LoginForm([
             'username' => 'admin',
-            'password' => 'admin',
+            'password' => 'password_0',
         ]);
 
         $this->specify('user should be able to login with correct credentials', function () use ($model) {
@@ -57,5 +57,4 @@ class LoginFormTest extends TestCase
             expect('user should be logged in', Yii::$app->user->isGuest)->false();
         });
     }
-
 }

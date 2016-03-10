@@ -21,7 +21,9 @@
         "c006/yii2-migration-utility": "dev-master",
         "yiisoft/yii2-jui": "^2.0",
         "cornernote/yii2-linkall": "*",
-        "voskobovich/yii2-many-many-behavior": "*"
+        "voskobovich/yii2-many-many-behavior": "*",
+        "kartik-v/yii2-datecontrol": "@dev",
+        "kartik-v/yii2-widget-datepicker": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Room */
@@ -22,7 +23,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'has_phone')->textInput() ?>
 
-    <?= $form->field($model, 'available_from')->textInput() ?>
+    <?= $form->field($model, 'available_from')->widget(DateControl::className(), [
+            'type' => DateControl::FORMAT_DATE,
+            // 'value' => date("Y-m-d"),
+            // 'value' => date("d.m.Y"),
+            // 'value' => time(),
+            // 'value' => 'Dec 1, 2015',
+            // 'value' => '2015-12-02',
+            // 'value' => '2015-12-02 00:00:00 0000',
+    ]); ?>
 
     <?= $form->field($model, 'price_per_day')->textInput(['maxlength' => true]) ?>
 

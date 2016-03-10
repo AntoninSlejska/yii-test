@@ -65,6 +65,35 @@ $config = [
       'utility' => [
         'class' => 'c006\utility\migration\Module',
       ],
+        'datecontrol' =>  [
+            'class' => 'kartik\datecontrol\Module',
+            // // format settings for displaying each date attribute
+            // 'displaySettings' => [
+            //     Module::FORMAT_DATE => 'dd.MM.yyyy',
+            //     Module::FORMAT_TIME => 'hh:mm:ss a',
+            //     Module::FORMAT_DATETIME => 'dd.MM.yyyy hh:mm:ss a',
+            // ],
+            //
+            // // format settings for saving each date attribute
+            // 'saveSettings' => [
+            //     Module::FORMAT_DATE => 'Y-M-d',
+            //     Module::FORMAT_TIME => 'H:i:s',
+            //     Module::FORMAT_DATETIME => 'Y-M-d H:i:s',
+            // ],
+
+            // automatically use kartik\widgets for each of the above formats
+            'autoWidget' => true,
+
+            'autoWidgetSettings' => [
+                'date' => [
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                        'todayBtn' => true,
+                    ],
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
