@@ -62,6 +62,7 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
                 ['label' => 'Three Columns', 'url' => ['/three-columns']],
                 ['label' => 'Table one', 'url' => ['/table-one']],
                 ['label' => 'Date Picker', 'url' => ['/jui-widgets/date-picker']],
+                ['label' => 'Dynagrid with Export', 'url' => ['/client/index']],
                 ]],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/site/login']] :
