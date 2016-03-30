@@ -59,6 +59,7 @@ $backgroundColor = isset($this->params['background_color'])?$this->params['backg
                 ['label' => 'multiple models', 'url' => ['/customers/create-multiple-models']],
                 ]],
             ['label' => 'Other', 'items' => [
+                ['label' => 'Calendar', 'url' => ['/event/calendar']],
                 ['label' => 'Three Columns', 'url' => ['/three-columns']],
                 ['label' => 'Table one', 'url' => ['/table-one']],
                 ['label' => 'Date Picker', 'url' => ['/jui-widgets/date-picker']],
