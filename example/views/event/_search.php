@@ -19,9 +19,29 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title') ?>
 
+    <?= $form->field($model, 'description') ?>
+
+    <?= $form->field($model, 'allDay') ?>
+
     <?= $form->field($model, 'start') ?>
 
-    <?= $form->field($model, 'end') ?>
+    <?php // echo $form->field($model, 'end') ?>
+
+    <?php // echo $form->field($model, 'dow') ?>
+
+    <?php // echo $form->field($model, 'className') ?>
+
+    <?php // echo $form->field($model, 'editable') ?>
+
+    <?php // echo $form->field($model, 'source') ?>
+
+    <?php // echo $form->field($model, 'color') ?>
+
+    <?php // echo $form->field($model, 'backgroundColor') ?>
+
+    <?php // echo $form->field($model, 'borderColor') ?>
+
+    <?php // echo $form->field($model, 'textColor') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

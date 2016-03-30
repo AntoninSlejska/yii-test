@@ -9,8 +9,18 @@ use Yii;
  *
  * @property integer $id
  * @property string $title
+ * @property string $description
+ * @property integer $allDay
  * @property string $start
  * @property string $end
+ * @property string $dow
+ * @property string $className
+ * @property integer $editable
+ * @property string $source
+ * @property string $color
+ * @property string $backgroundColor
+ * @property string $borderColor
+ * @property string $textColor
  */
 class Event extends \yii\db\ActiveRecord
 {
@@ -28,9 +38,11 @@ class Event extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'start'], 'required'],
+            [['title'], 'required'],
+            [['description'], 'string'],
+            [['allDay', 'editable'], 'integer'],
             [['start', 'end'], 'safe'],
-            [['title'], 'string', 'max' => 45],
+            [['title', 'dow', 'className', 'source', 'color', 'backgroundColor', 'borderColor', 'textColor'], 'string', 'max' => 45],
         ];
     }
 
@@ -42,8 +54,18 @@ class Event extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
+            'description' => 'Description',
+            'allDay' => 'All Day',
             'start' => 'Start',
             'end' => 'End',
+            'dow' => 'Dow',
+            'className' => 'Class Name',
+            'editable' => 'Editable',
+            'source' => 'Source',
+            'color' => 'Color',
+            'backgroundColor' => 'Background Color',
+            'borderColor' => 'Border Color',
+            'textColor' => 'Text Color',
         ];
     }
 }

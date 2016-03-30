@@ -30,8 +30,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
+            'description:ntext',
+            'allDay',
             'start',
             'end',
+            'dow',
+            'className',
+            'editable',
+            'source',
+            'color',
+            'backgroundColor',
+            'borderColor',
+            'textColor',
         ],
     ]) ?>
 

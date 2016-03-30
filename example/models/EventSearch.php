@@ -18,8 +18,8 @@ class EventSearch extends Event
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'start', 'end'], 'safe'],
+            [['id', 'allDay', 'editable'], 'integer'],
+            [['title', 'description', 'start', 'end', 'dow', 'className', 'source', 'color', 'backgroundColor', 'borderColor', 'textColor'], 'safe'],
         ];
     }
 
@@ -60,11 +60,21 @@ class EventSearch extends Event
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'allDay' => $this->allDay,
             'start' => $this->start,
             'end' => $this->end,
+            'editable' => $this->editable,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'dow', $this->dow])
+            ->andFilterWhere(['like', 'className', $this->className])
+            ->andFilterWhere(['like', 'source', $this->source])
+            ->andFilterWhere(['like', 'color', $this->color])
+            ->andFilterWhere(['like', 'backgroundColor', $this->backgroundColor])
+            ->andFilterWhere(['like', 'borderColor', $this->borderColor])
+            ->andFilterWhere(['like', 'textColor', $this->textColor]);
 
         return $dataProvider;
     }
